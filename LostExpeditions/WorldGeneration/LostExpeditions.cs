@@ -22,7 +22,6 @@ namespace LostExpeditions.WorldGeneration {
 			this.CurrentLE = 0;
 
 			int count = 14;
-			int campWidth = 12;
 
 			switch( WorldLibraries.GetSize() ) {
 			case WorldSize.SubSmall:
@@ -42,7 +41,7 @@ namespace LostExpeditions.WorldGeneration {
 				break;
 			}
 
-			this.CreateAllLEs( progress, count, campWidth );
+			this.CreateAllExpeditions( progress, count );
 		}
 	}
 }

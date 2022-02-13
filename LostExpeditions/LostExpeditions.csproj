@@ -32,6 +32,9 @@
     <Reference Include="ModLibsMaps">
       <HintPath>..\..\..\Mod Libs\Mod Libs Services Maps\Project\ModLibsMaps\bin\Release\net452\ModLibsMaps.dll</HintPath>
     </Reference>
+    <Reference Include="ModLibsUtilityContent">
+      <HintPath>..\..\..\Mod Libs\Mod Libs Utility Content\Project\ModLibsUtilityContent\bin\Release\net452\ModLibsUtilityContent.dll</HintPath>
+    </Reference>
     <Reference Include="MountedMagicMirrors">
       <HintPath>..\..\..\Mounted Magic Mirrors\Project\MountedMagicMirrors\bin\Release\net452\MountedMagicMirrors.dll</HintPath>
     </Reference>

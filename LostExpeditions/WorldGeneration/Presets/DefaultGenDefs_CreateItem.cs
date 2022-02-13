@@ -241,28 +241,42 @@ namespace LostExpeditions.WorldGeneration.Presets {
 
 		////
 
-		private static (Item meterItem, Item missionItem, Item manualItem)? CreatePKEMeterItems() {
-			if( ModLoader.GetMod("PKEMeter") != null ) {
-				return DefaultLostExpeditionGenDefs.CreatePKEMeterItem_WeakRef();
+		private static IEnumerable<Item> CreatePKEMeterItems( int meterCount ) {
+			if( ModLoader.GetMod("PKEMeter") == null ) {
+				return new List<Item>( 0 );
 			}
-			return default;
+
+			(Item[] i1, Item i2, Item i3) items = DefaultLostExpeditionGenDefs.CreatePKEMeterItems_WeakRef( meterCount );
+			var list = new List<Item>( items.i1 );
+			list.Add( items.i2 );
+			list.Add( items.i3 );
+			return list;
 		}
 
-		private static (Item meterItem, Item missionItem, Item manualItem)? CreatePKEMeterItem_WeakRef() {
-			var meterItem = new Item();
-			meterItem.SetDefaults( ModContent.ItemType<PKEMeter.Items.PKEMeterItem>(), true );
+		private static (Item[] meterItems, Item missionItem, Item manualItem) CreatePKEMeterItems_WeakRef(
+					int meterCount ) {
+			var meterItems = new Item[meterCount];
+
+			for( int i=0; i<meterCount; i++ ) {
+				var meterItem = new Item();
+				meterItem.SetDefaults( ModContent.ItemType<PKEMeter.Items.PKEMeterItem>(), true );
+
+				meterItems[i] = meterItem;
+			}
+
+			//
 
 			Item missionItem = ReadableBookItem.CreateBook(
-				LostExpeditionsGen.MissionBriefingBookInfo.title,
-				LostExpeditionsGen.MissionBriefingBookInfo.pages
+				DefaultLostExpeditionGenDefs.MissionBriefingBookInfo.title,
+				DefaultLostExpeditionGenDefs.MissionBriefingBookInfo.pages
 			);
 
 			Item manualItem = ReadableBookItem.CreateBook(
-				LostExpeditionsGen.PKEBookInfo.title,
-				LostExpeditionsGen.PKEBookInfo.pages
+				DefaultLostExpeditionGenDefs.PKEBookInfo.title,
+				DefaultLostExpeditionGenDefs.PKEBookInfo.pages
 			);
 
-			return (meterItem, missionItem, manualItem);
+			return (meterItems, missionItem, manualItem);
 		}
 
 

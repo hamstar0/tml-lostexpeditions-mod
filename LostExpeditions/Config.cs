@@ -21,6 +21,16 @@ namespace LostExpeditions {
 
 		public bool DebugModeLostExpeditionsReveal { get; set; } = false;
 
+
+		////
+
+		[DefaultValue( true )]
+		public bool CreateDefaultSurfaceExpeditions { get; set; } = true;
+
+		[DefaultValue( true )]
+		public bool CreateDefaultUndergroundExpeditions { get; set; } = true;
+
+
 		////
 
 		[Range(-1, 4048)]

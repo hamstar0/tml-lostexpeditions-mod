@@ -1,11 +1,10 @@
 ﻿using System;
 using Terraria;
-using Terraria.World.Generation;
 using ModLibsCore.Libraries.Debug;
 
 
-namespace LostExpeditions.WorldGeneration {
-	partial class LostExpeditionsGen : GenPass {
+namespace LostExpeditions.WorldGeneration.Presets {
+	public partial class DefaultLostExpeditionGenDefs {
 		public static (string title, string[] pages) MissionBriefingBookInfo = (
 			"Mission Briefing - Codename\n          'Tinman'",
 			new string[] {

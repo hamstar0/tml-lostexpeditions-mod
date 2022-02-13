@@ -7,10 +7,10 @@ using ModLibsCore.Libraries.Debug;
 
 
 namespace LostExpeditions.WorldGeneration {
-	public class LostExpeditionGenDef {
+	public partial class LostExpeditionGenDef {
 		public delegate IEnumerable<Item> ItemGenDef();
 
-		public delegate (int tileX, int nearFloorTileY)? FindLocation(
+		public delegate (int leftTileX, int nearFloorTileY)? FindLocation(
 					int campWidth,
 					out int mostCommonTileType );
 

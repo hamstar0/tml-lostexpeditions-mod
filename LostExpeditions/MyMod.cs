@@ -20,7 +20,7 @@ namespace LostExpeditions {
 
 		////////////////
 
-		internal IList<LostExpeditionGenDef> GenDefs = new List<LostExpeditionGenDef>();
+		internal IList<(LostExpeditionGenDef GenDef, int Count)> GenDefs = new List<(LostExpeditionGenDef, int)>();
 
 
 

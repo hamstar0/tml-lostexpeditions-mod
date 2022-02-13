@@ -11,7 +11,7 @@ using ModLibsGeneral.Libraries.Tiles;
 
 namespace LostExpeditions.WorldGeneration {
 	partial class LostExpeditionsGen : GenPass {
-		private bool CreateExpeditionAt(
+		public static bool CreateExpeditionStructure(
 					int leftTileX,
 					int nearFloorTileY,
 					int campWidth,
@@ -23,7 +23,7 @@ namespace LostExpeditions.WorldGeneration {
 			int toTileX = leftTileX + campWidth;
 
 			for( int i = leftTileX; i < toTileX; i++ ) {
-				this.PaveCampAt( i, nearFloorTileY, paveTileType );
+				LostExpeditionsGen.PaveCampAt( i, nearFloorTileY, paveTileType );
 			}
 
 			// Tent
@@ -94,7 +94,7 @@ namespace LostExpeditions.WorldGeneration {
 
 		////////////////
 
-		private void PaveCampAt( int tileX, int nearFloorTileY, int tileType ) {
+		private static void PaveCampAt( int tileX, int nearFloorTileY, int tileType ) {
 			// Clear space above camp
 			int minAirY = nearFloorTileY - 3;
 			int maxAirY = nearFloorTileY;
@@ -124,7 +124,7 @@ namespace LostExpeditions.WorldGeneration {
 			int solidY = minSolidY;
 
 			for( Tile tile = Framing.GetTileSafely(tileX, solidY);
-						solidY < maxSolidY && !this.IsValidFloorTile(tile);
+						solidY < maxSolidY && !LostExpeditionsGen.IsValidFloorTile(tile);
 						tile = Framing.GetTileSafely(tileX, ++solidY) ) {
 				try {
 					if( tile.active() ) {
@@ -154,14 +154,14 @@ namespace LostExpeditions.WorldGeneration {
 
 				Tile tile = Framing.GetTileSafely( fillAt.x, fillAt.y );
 
-				if( !this.IsValidFloorTile(tile) ) {
+				if( !LostExpeditionsGen.IsValidFloorTile(tile) ) {
 					tile.ClearEverything();
 
 					tile.active( true );
 					tile.type = (ushort)tileType;
 					WorldGen.SquareTileFrame( fillAt.x, fillAt.y );
 
-					if( !this.IsValidFloorTile(tile) ) {
+					if( !LostExpeditionsGen.IsValidFloorTile(tile) ) {
 						LogLibraries.Log( "Could not fill camp floor tile (type: "+tileType+") at "+fillAt.x+", "+fillAt.y
 							+": "+tile.ToString() );
 					}

@@ -8,13 +8,13 @@ using ReadableBooks.Items.ReadableBook;
 
 namespace LostExpeditions.WorldGeneration {
 	partial class LostExpeditionsGen : GenPass {
-		private void FillExpeditionBarrel(
+		public static void FillExpeditionBarrel(
 					int tileX,
-					int nearFloorTileY,
+					int tileY,
 					int chestIdx,
 					LostExpeditionGenDef.ItemGenDef[] itemGenDefs ) {
 			if( chestIdx == -1 ) {
-				LogLibraries.Warn( "Could not fill 'lost expedition' barrel at " + tileX + ", " + nearFloorTileY + "." );
+				LogLibraries.Warn( "Could not fill 'lost expedition' barrel at "+tileX+", "+tileY+"." );
 				return;
 			}
 

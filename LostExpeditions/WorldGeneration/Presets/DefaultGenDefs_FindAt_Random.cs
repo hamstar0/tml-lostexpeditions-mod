@@ -1,13 +1,12 @@
 ﻿using System;
 using Terraria;
-using Terraria.World.Generation;
 using ModLibsCore.Libraries.Debug;
 using ModLibsGeneral.Libraries.World;
 
 
 namespace LostExpeditions.WorldGeneration.Presets {
 	public partial class DefaultLostExpeditionGenDefs {
-		private static (int x, int y)? FindRandomExpeditionLocation( int campWidth, out int mostCommonTileType ) {
+		private static (int x, int y)? FindUndergroundExpeditionLocation( int campWidth, out int mostCommonTileType ) {
 			int maxTileY = WorldLocationLibraries.RockLayerBottomTileY;
 
 			for( int i=0; i<2000; i++ ) {

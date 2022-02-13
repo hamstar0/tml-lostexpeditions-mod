@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.World.Generation;
 using ModLibsCore.Classes.Errors;
@@ -8,29 +10,67 @@ using LostExpeditions.WorldGeneration.Presets;
 
 namespace LostExpeditions.WorldGeneration {
 	partial class LostExpeditionsGen : GenPass {
-		private void CreateAllLEs( GenerationProgress progress, int count, int campWidth ) {
+		private void CreateAllExpeditions( GenerationProgress progress, int count ) {
 			var config = LostExpeditionsConfig.Instance;
 
-			if( config.Get<bool>( nameof(config.GenDefaultSurfaceExpeditions) ) ) {
-				this.CreateExpeditionFullyAt( DefaultLostExpeditionGenDefs.DungeonGenDef );
-				progress.Value += 1f / ((float)count + 3f);
-				count--;
+			(int leftTileX, int nearFloorTileY)? expedition;
+			IList<(int leftTileX, int nearFloorTileY)> existingExpeditions = new List<(int, int)>();
 
-				this.CreateAtMidMapLE( campWidth );
-				progress.Value += 1f / ((float)count + 3f);
-				count--;
+			//
 
-				this.CreateJungleOceanLE( campWidth );
-				progress.Value += 1f / ((float)count + 3f);
-				count--;
+			int totalCustomGens = LostExpeditionsMod.Instance.GenDefs
+				.Sum( e => e.Count );
+			float progUnit = 1f / (float)(totalCustomGens + count);
+
+			//
+
+			if( config.Get<bool>( nameof(config.CreateDefaultSurfaceExpeditions) ) ) {
+				expedition = DefaultLostExpeditionGenDefs.DungeonGenDef.CreateExpedition();
+				if( expedition.HasValue ) {
+					existingExpeditions.Add( expedition.Value );
+					progress.Value += progUnit;
+					count--;
+				}
+
+				expedition = DefaultLostExpeditionGenDefs.MidMapGenDef.CreateExpedition();
+				if( expedition.HasValue ) {
+					existingExpeditions.Add( expedition.Value );
+					progress.Value += progUnit;
+					count--;
+				}
+
+				expedition = DefaultLostExpeditionGenDefs.JungleOceanGenDef.CreateExpedition();
+				if( expedition.HasValue ) {
+					existingExpeditions.Add( expedition.Value );
+					progress.Value += progUnit;
+					count--;
+				}
 			}
 
-			if( config.Get<bool>( nameof(config.GenDefaultUndergroundExpeditions) ) ) {
-				this.CreateAllUndergroundLEs( progress, count, campWidth );
+			//
+
+			//
+
+			if( config.Get<bool>( nameof(config.CreateDefaultUndergroundExpeditions) ) ) {
+				this.CreateDistributedExpeditions(
+					genDef: DefaultLostExpeditionGenDefs.UndergroundGenDef,
+					amount: count,
+					progress: progress,
+					progressUnit: progUnit,
+					existingExpeditions: ref existingExpeditions
+				);
 			}
 
-			foreach( var genDef in LostExpeditionsMod.Instance.GenDefs ) {
-				genDef
+			//
+
+			foreach( (LostExpeditionGenDef myGenDef, int myGenCount) in LostExpeditionsMod.Instance.GenDefs ) {
+				this.CreateDistributedExpeditions(
+					genDef: myGenDef,
+					amount: myGenCount,
+					progress: progress,
+					progressUnit: progUnit,
+					existingExpeditions: ref existingExpeditions
+				);
 			}
 		}
 	}
