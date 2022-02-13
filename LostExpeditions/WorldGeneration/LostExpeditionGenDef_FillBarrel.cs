@@ -1,12 +1,10 @@
 ﻿using System;
 using Terraria;
-using Terraria.World.Generation;
-using Terraria.ModLoader;
 using ModLibsCore.Libraries.Debug;
 
 
 namespace LostExpeditions.WorldGeneration {
-	partial class LostExpeditionsGen : GenPass {
+	public partial class LostExpeditionGenDef {
 		public static void FillExpeditionBarrel(
 					int tileX,
 					int tileY,

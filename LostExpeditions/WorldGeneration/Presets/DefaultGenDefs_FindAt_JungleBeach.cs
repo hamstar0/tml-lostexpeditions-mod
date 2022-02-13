@@ -37,7 +37,7 @@ namespace LostExpeditions.WorldGeneration.Presets {
 			for( int i=0; i<maxX; i++ ) {
 				int x = tileX + (i * dir);
 
-				scanPos = LostExpeditionsGen.FindExpeditionFutureFloorArea(
+				scanPos = LostExpeditionGenDef.FindExpeditionFutureFloorArea(
 					tileX: x,
 					tileY: tileY,
 					maxTileY: maxTileY,

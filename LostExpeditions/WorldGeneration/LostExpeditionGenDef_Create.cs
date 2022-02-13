@@ -45,7 +45,7 @@ namespace LostExpeditions.WorldGeneration {
 
 			//
 
-			bool createdCamp = LostExpeditionsGen.CreateExpeditionStructure(
+			bool createdCamp = LostExpeditionGenDef.CreateExpeditionStructure(
 				leftTileX: leftTileX,
 				nearFloorTileY: nearFloorTileY,
 				campWidth: this.TileWidth + 2,
@@ -57,7 +57,7 @@ namespace LostExpeditions.WorldGeneration {
 			);
 
 			if( createdCamp ) {
-				LostExpeditionsGen.FillExpeditionBarrel(
+				LostExpeditionGenDef.FillExpeditionBarrel(
 					tileX: leftTileX,
 					tileY: nearFloorTileY,
 					chestIdx: chestIdx,

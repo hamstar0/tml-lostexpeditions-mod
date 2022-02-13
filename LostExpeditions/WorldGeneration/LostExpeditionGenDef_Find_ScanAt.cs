@@ -9,7 +9,7 @@ using ModLibsCore.Libraries.DotNET.Extensions;
 
 
 namespace LostExpeditions.WorldGeneration {
-	partial class LostExpeditionsGen : GenPass {
+	public partial class LostExpeditionGenDef {
 		private static bool ScanFromTileForCamp(
 					int tileX,
 					int nearFloorTileY,
@@ -34,7 +34,7 @@ namespace LostExpeditions.WorldGeneration {
 
 				int nearCampFloorTileY2 = 0;
 
-				isValidFloorTile = LostExpeditionsGen.FindValidNearFloorTileAt(
+				isValidFloorTile = LostExpeditionGenDef.FindValidNearFloorTileAt(
 					tileX: checkLeftX,
 					topTileY: nearFloorTileY - 1,
 					botTileY: botY,
@@ -51,7 +51,7 @@ namespace LostExpeditions.WorldGeneration {
 					checkLeftX--;
 				}
 
-				isValidFloorTile = LostExpeditionsGen.FindValidNearFloorTileAt(
+				isValidFloorTile = LostExpeditionGenDef.FindValidNearFloorTileAt(
 					tileX: checkRightX,
 					topTileY: nearFloorTileY - 1,
 					botTileY: botY,
@@ -72,7 +72,7 @@ namespace LostExpeditions.WorldGeneration {
 			//
 
 			// Widen to the left by 1, if possible
-			isValidFloorTile = LostExpeditionsGen.FindValidNearFloorTileAt(
+			isValidFloorTile = LostExpeditionGenDef.FindValidNearFloorTileAt(
 				tileX: checkLeftX,
 				topTileY: nearFloorTileY - 1,
 				botTileY: botY,
@@ -124,7 +124,7 @@ namespace LostExpeditions.WorldGeneration {
 			// Find floor
 			bool hasEmptySpace = false;
 			for( Tile tile = Main.tile[ tileX, findFloorY ];
-						findFloorY < botTileY && LostExpeditionsGen.IsValidEmptyTile( tile, permitDungeonWalls );
+						findFloorY < botTileY && LostExpeditionGenDef.IsValidEmptyTile( tile, permitDungeonWalls );
 						tile = Main.tile[ tileX, ++findFloorY ] ) {
 				hasEmptySpace = true;
 			}
@@ -133,7 +133,7 @@ namespace LostExpeditions.WorldGeneration {
 
 			// Validate existing floor
 			Tile floorTile = Main.tile[ tileX, findFloorY ];
-			if( !hasEmptySpace || !LostExpeditionsGen.IsValidFloorTile(floorTile) ) {
+			if( !hasEmptySpace || !LostExpeditionGenDef.IsValidFloorTile(floorTile) ) {
 				return false;
 			}
 
@@ -144,7 +144,7 @@ namespace LostExpeditions.WorldGeneration {
 				}
 
 				Tile tile = Main.tile[ tileX, nearFloorTileY - i ];
-				if( !LostExpeditionsGen.IsValidEmptyTile(tile, permitDungeonWalls) ) {
+				if( !LostExpeditionGenDef.IsValidEmptyTile(tile, permitDungeonWalls) ) {
 					return false;
 				}
 			}

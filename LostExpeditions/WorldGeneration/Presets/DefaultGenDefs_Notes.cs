@@ -4,8 +4,8 @@ using Terraria.World.Generation;
 using ModLibsCore.Libraries.Debug;
 
 
-namespace LostExpeditions.WorldGeneration {
-	partial class LostExpeditionsGen : GenPass {
+namespace LostExpeditions.WorldGeneration.Presets {
+	public partial class DefaultLostExpeditionGenDefs {
 		public static readonly (string title, string[] pages)[] LoreNotes = {
 			( "The Plague", new string[] {
 				"Also known as 'The Curse', 'Undeath', and even ominously as 'Signs', this phenomena of"

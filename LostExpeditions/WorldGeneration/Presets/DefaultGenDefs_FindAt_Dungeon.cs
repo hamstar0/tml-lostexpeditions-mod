@@ -61,7 +61,7 @@ namespace LostExpeditions.WorldGeneration.Presets {
 			(int, int)? scanPos;
 
 			for( int i = 1; i < 40; i++ ) {
-				scanPos = LostExpeditionsGen.FindExpeditionFutureFloorArea(
+				scanPos = LostExpeditionGenDef.FindExpeditionFutureFloorArea(
 					tileX: tileX - i,
 					tileY: nearFloorY,
 					maxTileY: WorldLocationLibraries.DirtLayerTopTileY - 1,
@@ -75,7 +75,7 @@ namespace LostExpeditions.WorldGeneration.Presets {
 					return scanPos;
 				}
 
-				scanPos = LostExpeditionsGen.FindExpeditionFutureFloorArea(
+				scanPos = LostExpeditionGenDef.FindExpeditionFutureFloorArea(
 					tileX: tileX + i,
 					tileY: nearFloorY,
 					maxTileY: WorldLocationLibraries.DirtLayerTopTileY - 1,

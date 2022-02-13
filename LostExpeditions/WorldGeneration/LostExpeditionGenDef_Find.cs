@@ -1,11 +1,10 @@
 ﻿using System;
 using Terraria;
-using Terraria.World.Generation;
 using ModLibsCore.Libraries.Debug;
 
 
 namespace LostExpeditions.WorldGeneration {
-	partial class LostExpeditionsGen : GenPass {
+	public partial class LostExpeditionGenDef {
 		public static (int tileX, int nearFloorTileY)? FindExpeditionFutureFloorArea(
 					int tileX,
 					int tileY,
@@ -17,7 +16,7 @@ namespace LostExpeditions.WorldGeneration {
 					out int mostCommonTileType ) {
 			int nearFloorTileY;
 
-			bool isValidFloor = LostExpeditionsGen.FindValidNearFloorTileAt(
+			bool isValidFloor = LostExpeditionGenDef.FindValidNearFloorTileAt(
 				tileX: tileX,
 				topTileY: tileY,
 				botTileY: maxTileY,
@@ -30,7 +29,7 @@ namespace LostExpeditions.WorldGeneration {
 				return null;
 			}
 
-			bool scan = LostExpeditionsGen.ScanFromTileForCamp(
+			bool scan = LostExpeditionGenDef.ScanFromTileForCamp(
 				tileX: tileX,
 				nearFloorTileY: nearFloorTileY,
 				campWidth: campWidth,

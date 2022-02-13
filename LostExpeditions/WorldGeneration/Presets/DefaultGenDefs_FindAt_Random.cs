@@ -13,7 +13,7 @@ namespace LostExpeditions.WorldGeneration.Presets {
 				int tileX = WorldGen.genRand.Next( WorldLocationLibraries.BeachWestTileX, WorldLocationLibraries.BeachEastTileX );
 				int tileY = WorldGen.genRand.Next( WorldLocationLibraries.DirtLayerTopTileY, maxTileY );
 
-				(int, int)? scanPos = LostExpeditionsGen.FindExpeditionFutureFloorArea(
+				(int, int)? scanPos = LostExpeditionGenDef.FindExpeditionFutureFloorArea(
 					tileX: tileX,
 					tileY: tileY,
 					maxTileY: maxTileY,
