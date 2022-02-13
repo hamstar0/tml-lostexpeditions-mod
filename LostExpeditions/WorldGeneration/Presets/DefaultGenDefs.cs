@@ -40,21 +40,16 @@ namespace LostExpeditions.WorldGeneration.Presets {
 			customTileTypes: new int[0],
 			finder: DefaultLostExpeditionGenDefs.FindJungleSideBeachExpeditionLocation,
 			barrelItemGenerators: new LostExpeditionGenDef.ItemGenDef[] {
-				(id) => DefaultLostExpeditionGenDefs.CreateLoreNoteItems( id )
+				(id) => DefaultLostExpeditionGenDefs.CreateLoreNoteItems( id ),
+				(id) => DefaultLostExpeditionGenDefs.CreateSpeedloaderItems(
+					WorldGen.genRand.NextFloat() < (2f/3f) ? 1 : 0 ),
+				(id) => DefaultLostExpeditionGenDefs.CreateWhiteOrbItems( WorldGen.genRand.Next(1, 4) ),
+				(id) => DefaultLostExpeditionGenDefs.CreateCanopicJarItems( WorldGen.genRand.Next(1, 3) ),
+				(id) => DefaultLostExpeditionGenDefs.CreateElixirOfLifeItems( WorldGen.genRand.Next(1, 3) ),
+				(id) => DefaultLostExpeditionGenDefs.CreateDarkHeartPieceItems( 1 )
 			},
 			remembersLocation: true
 		);
-		//hasLoreNote: true,
-		//speedloaderCount: WorldGen.genRand.NextFloat() < (2f/3f) ? 1 : 0,
-		//randomOrbCount: 0,
-		//whiteOrbCount: WorldGen.genRand.Next( 1, 4 ),
-		//canopicJarCount: WorldGen.genRand.Next( 1, 3 ),
-		//elixirCount: WorldGen.genRand.Next( 1, 3 ),
-		//mountedMirrorsCount: 0,
-		//PKEMeterCount: 0,
-		//hasOrbsBooklet: false,
-		//hasShadowMirror: false,
-		//darkHeartPieceCount: 1
 
 		public static LostExpeditionGenDef UndergroundGenDef => new LostExpeditionGenDef(
 			name: "underground",
@@ -62,20 +57,18 @@ namespace LostExpeditions.WorldGeneration.Presets {
 			customTileTypes: new int[0],
 			finder: DefaultLostExpeditionGenDefs.FindUndergroundExpeditionLocation,
 			barrelItemGenerators: new LostExpeditionGenDef.ItemGenDef[] {
-				(id) => DefaultLostExpeditionGenDefs.CreatePKEMeterItems( 2 )f
+				(id) => DefaultLostExpeditionGenDefs.CreateLoreNoteItems( id ),
+				(id) => DefaultLostExpeditionGenDefs.CreateSpeedloaderItems(
+					WorldGen.genRand.NextFloat() < (2f / 3f) ? 1 : 0 ),
+				(id) => DefaultLostExpeditionGenDefs.CreateWhiteOrbItems( WorldGen.genRand.Next(1, 4) ),
+				(id) => DefaultLostExpeditionGenDefs.CreateCanopicJarItems( WorldGen.genRand.Next(1, 3) ),
+				(id) => DefaultLostExpeditionGenDefs.CreateElixirOfLifeItems( WorldGen.genRand.Next(-1, 2) ),
+				(id) => DefaultLostExpeditionGenDefs.CreateMountedMirrorItems( WorldGen.genRand.Next(-1, 2) ),
+				(id) => DefaultLostExpeditionGenDefs.CreateShadowMirrorItems(
+					WorldGen.genRand.NextBool() ? 1 : 0 ),
+				(id) => DefaultLostExpeditionGenDefs.CreateDarkHeartPieceItems( WorldGen.genRand.Next(-1, 2) )
 			},
 			remembersLocation: true
 		);
-		//hasLoreNote: true,
-		//speedloaderCount: WorldGen.genRand.NextFloat() < (2f / 3f) ? 1 : 0,
-		//randomOrbCount: 0,
-		//whiteOrbCount: WorldGen.genRand.Next( 1, 4 ),
-		//canopicJarCount: WorldGen.genRand.Next( 1, 3 ),
-		//elixirCount: WorldGen.genRand.Next( -1, 2 ),
-		//mountedMirrorsCount: WorldGen.genRand.Next( -1, 2 ),
-		//PKEMeterCount: 0,
-		//hasOrbsBooklet: false,
-		//hasShadowMirror: WorldGen.genRand.NextBool(),
-		//darkHeartPieceCount: WorldGen.genRand.Next( -1, 2 )
 	}
 }

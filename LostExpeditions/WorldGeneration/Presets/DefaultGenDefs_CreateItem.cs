@@ -10,16 +10,16 @@ using ReadableBooks.Items.ReadableBook;
 
 namespace LostExpeditions.WorldGeneration.Presets {
 	public partial class DefaultLostExpeditionGenDefs {
-		private static IList<Item> CreateRandomOrbItems( int count ) {
-			if( ModLoader.GetMod("Orbs") == null ) {
+		private static IEnumerable<Item> CreateRandomOrbItems( int quantity ) {
+			if( ModLoader.GetMod("Orbs") == null || quantity <= 0 ) {
 				return new List<Item>( 0 );
 			}
 
 			//
 
-			var items = new List<Item>( count );
+			var items = new List<Item>( quantity );
 
-			for( int i = 0; i < count; i++ ) {
+			for( int i = 0; i < quantity; i++ ) {
 				Item newItem = DefaultLostExpeditionGenDefs.CreateRandomOrbItem_WeakRef();
 				if( newItem != null ) {
 					items.Add( newItem );
@@ -92,32 +92,26 @@ namespace LostExpeditions.WorldGeneration.Presets {
 
 		////
 
-		private static IList<Item> CreateDarkHeartPieceItems( int count ) {
-			if( ModLoader.GetMod("LockedAbilities") == null ) {
+		private static IEnumerable<Item> CreateDarkHeartPieceItems( int quantity ) {
+			if( ModLoader.GetMod("LockedAbilities") == null || quantity <= 0 ) {
 				return new List<Item>( 0 );
 			}
 
-			//
+			return DefaultLostExpeditionGenDefs.CreateDarkHeartPieceItems_WeakRef( quantity );
+		}
 
-			var items = new List<Item>( count );
+		private static IEnumerable<Item> CreateDarkHeartPieceItems_WeakRef( int quantity ) {
+			int darkHeartItemType = ModContent.ItemType<LockedAbilities.Items.Consumable.DarkHeartPieceItem>();
+			var items = new List<Item>( quantity );
 
-			for( int i = 0; i < count; i++ ) {
-				Item newItem = DefaultLostExpeditionGenDefs.CreateDarkHeartPieceItem_WeakRef();
-				if( newItem != null ) {
-					items.Add( newItem );
-				}
+			for( int i = 0; i < quantity; i++ ) {
+				var item = new Item();
+				item.SetDefaults( darkHeartItemType, true );
+
+				items.Add( item );
 			}
 
 			return items;
-		}
-
-		private static Item CreateDarkHeartPieceItem_WeakRef() {
-			var item = new Item();
-			int darkHeartItemType = ModContent.ItemType<LockedAbilities.Items.Consumable.DarkHeartPieceItem>();
-
-			item.SetDefaults( darkHeartItemType, true );
-
-			return item;
 		}
 
 
@@ -137,32 +131,50 @@ namespace LostExpeditions.WorldGeneration.Presets {
 
 		////
 
-		private static Item CreateSpeedloaderItem() {
-			if( ModLoader.GetMod("TheMadRanger") != null ) {
-				return DefaultLostExpeditionGenDefs.CreateSpeedloaderItem_WeakRef();
+		private static IEnumerable<Item> CreateSpeedloaderItems( int quantity ) {
+			if( ModLoader.GetMod("TheMadRanger") == null || quantity <= 0 ) {
+				return new List<Item>( 0 );
 			}
-			return default;
+			return DefaultLostExpeditionGenDefs.CreateSpeedloaderItems_WeakRef( quantity );
 		}
 
-		private static Item CreateSpeedloaderItem_WeakRef() {
-			var item = new Item();
-			item.SetDefaults( ModContent.ItemType<TheMadRanger.Items.SpeedloaderItem>(), true );
+		private static IEnumerable<Item> CreateSpeedloaderItems_WeakRef( int quantity ) {
+			var items = new List<Item>( quantity );
+			int itemType = ModContent.ItemType<TheMadRanger.Items.SpeedloaderItem>();
 
-			return item;
+			for( int i=0; i<quantity; i++ ) {
+				var item = new Item();
+				item.SetDefaults( itemType, true );
+
+				items.Add( item );
+			}
+
+			return items;
 		}
 
 
 		////
 
-		private static Item CreateWhiteOrbItem() {
-			if( ModLoader.GetMod("Orbs") != null ) {
-				return DefaultLostExpeditionGenDefs.CreateWhiteOrbItem_WeakRef();
+		private static IEnumerable<Item> CreateWhiteOrbItems( int quantity ) {
+			if( ModLoader.GetMod("Orbs") == null || quantity <= 0 ) {
+				return new List<Item>( 0 );
 			}
-			return default;
+			return DefaultLostExpeditionGenDefs.CreateWhiteOrbItems_WeakRef( quantity );
 		}
 		
-		private static Item CreateWhiteOrbItem_WeakRef() {
-			var item = new Item();
+		private static IEnumerable<Item> CreateWhiteOrbItems_WeakRef( int quantity ) {
+			var items = new List<Item>( quantity );
+			int itemType = ModContent.ItemType<Orbs.Items.WhiteOrbItem>();
+
+			for( int i = 0; i < quantity; i++ ) {
+				var item = new Item();
+				item.SetDefaults( itemType, true );
+
+				items.Add( item );
+			}
+
+			return items;
+
 			/*switch( WorldGen.genRand.Next(8) ) {
 			case 0:
 				item.SetDefaults( ModContent.ItemType<Orbs.Items.BlueOrbItem>(), true );
@@ -189,67 +201,85 @@ namespace LostExpeditions.WorldGeneration.Presets {
 				item.SetDefaults( ModContent.ItemType<Orbs.Items.YellowOrbItem>(), true );
 				break;
 			}*/
-			item.SetDefaults( ModContent.ItemType<Orbs.Items.WhiteOrbItem>(), true );
-
-			return item;
 		}
 
 
 		////
 
-		private static Item CreateCanopicJarItem() {
-			if( ModLoader.GetMod("Necrotis") != null ) {
-				return DefaultLostExpeditionGenDefs.CreateCanopicJarItem_WeakRef();
+		private static IEnumerable<Item> CreateCanopicJarItems( int quantity ) {
+			if( ModLoader.GetMod("Necrotis") == null || quantity <= 0 ) {
+				return new List<Item>( 0 );
 			}
-			return default;
+			return DefaultLostExpeditionGenDefs.CreateCanopicJarItems_WeakRef( quantity );
 		}
 
-		private static Item CreateCanopicJarItem_WeakRef() {
-			var item = new Item();
-			item.SetDefaults( ModContent.ItemType<Necrotis.Items.EmptyCanopicJarItem>(), true );
+		private static IEnumerable<Item> CreateCanopicJarItems_WeakRef( int quantity ) {
+			var items = new List<Item>( quantity );
+			int itemType = ModContent.ItemType<Necrotis.Items.EmptyCanopicJarItem>();
 
-			return item;
+			for( int i = 0; i < quantity; i++ ) {
+				var item = new Item();
+				item.SetDefaults( itemType, true );
+
+				items.Add( item );
+			}
+
+			return items;
 		}
 
 		////
 
-		private static Item CreateElixirOfLifeItem() {
-			if( ModLoader.GetMod("Necrotis") != null ) {
-				return DefaultLostExpeditionGenDefs.CreateElixirOfLifeItem_WeakRef();
+		private static IEnumerable<Item> CreateElixirOfLifeItems( int quantity ) {
+			if( ModLoader.GetMod("Necrotis") != null || quantity <= 0 ) {
+				return new List<Item>( 0 );
 			}
-			return default;
+			return DefaultLostExpeditionGenDefs.CreateElixirOfLifeItems_WeakRef( quantity );
 		}
 
-		private static Item CreateElixirOfLifeItem_WeakRef() {
-			var item = new Item();
-			item.SetDefaults( ModContent.ItemType<Necrotis.Items.ElixirOfLifeItem>(), true );
+		private static IEnumerable<Item> CreateElixirOfLifeItems_WeakRef( int quantity ) {
+			var items = new List<Item>( quantity );
+			int itemType = ModContent.ItemType<Necrotis.Items.ElixirOfLifeItem>();
 
-			return item;
+			for( int i = 0; i < quantity; i++ ) {
+				var item = new Item();
+				item.SetDefaults( itemType, true );
+
+				items.Add( item );
+			}
+
+			return items;
 		}
 
 		////
 
-		private static Item CreateMountedMirrorItem() {
-			if( ModLoader.GetMod("MountedMagicMirrors") != null ) {
-				return DefaultLostExpeditionGenDefs.CreateMountedMirrorItem_WeakRef();
+		private static IEnumerable<Item> CreateMountedMirrorItems( int quantity ) {
+			if( ModLoader.GetMod("MountedMagicMirrors") == null || quantity <= 0 ) {
+				return new List<Item>( 0 );
 			}
-			return default;
+			return DefaultLostExpeditionGenDefs.CreateMountedMirrorItems_WeakRef( quantity );
 		}
 
-		private static Item CreateMountedMirrorItem_WeakRef() {
-			var item = new Item();
-			item.SetDefaults( ModContent.ItemType<MountedMagicMirrors.Items.MountableMagicMirrorTileItem>(), true );
+		private static IEnumerable<Item> CreateMountedMirrorItems_WeakRef( int quantity ) {
+			var items = new List<Item>( quantity );
+			int itemType = ModContent.ItemType<MountedMagicMirrors.Items.MountableMagicMirrorTileItem>();
 
-			return item;
+			for( int i = 0; i < quantity; i++ ) {
+				var item = new Item();
+				item.SetDefaults( itemType, true );
+
+				items.Add( item );
+			}
+
+			return items;
 		}
 
 		////
 
 		private static IEnumerable<Item> CreatePKEMeterItems( int meterCount ) {
-			if( ModLoader.GetMod("PKEMeter") == null ) {
+			if( ModLoader.GetMod("PKEMeter") == null || meterCount <= 0 ) {
 				return new List<Item>( 0 );
 			}
-
+			
 			(Item[] i1, Item i2, Item i3) items = DefaultLostExpeditionGenDefs.CreatePKEMeterItems_WeakRef( meterCount );
 			var list = new List<Item>( items.i1 );
 			list.Add( items.i2 );
@@ -286,20 +316,25 @@ namespace LostExpeditions.WorldGeneration.Presets {
 
 		////
 
-		private static Item CreateShadowMirrorItem() {
-			if( ModLoader.GetMod("SpiritWalking") != null ) {
-				return DefaultLostExpeditionGenDefs.CreateShadowMirrorItem_WeakRef();
+		private static IEnumerable<Item> CreateShadowMirrorItems( int quantity ) {
+			if( ModLoader.GetMod("SpiritWalking") == null || quantity <= 0 ) {
+				return new List<Item>( 0 );
 			}
-			return default;
+			return DefaultLostExpeditionGenDefs.CreateShadowMirrorItems_WeakRef( quantity );
 		}
 
-		private static Item CreateShadowMirrorItem_WeakRef() {
-			var mirrorItem = new Item();
+		private static IEnumerable<Item> CreateShadowMirrorItems_WeakRef( int quantity ) {
+			var items = new List<Item>( quantity );
 			int itemType = ModContent.ItemType<SpiritWalking.Items.ShadowMirrorItem>();
 
-			mirrorItem.SetDefaults( itemType, true );
+			for( int i = 0; i < quantity; i++ ) {
+				var item = new Item();
+				item.SetDefaults( itemType, true );
 
-			return mirrorItem;
+				items.Add( item );
+			}
+
+			return items;
 		}
 	}
 }
