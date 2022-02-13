@@ -61,7 +61,7 @@ namespace LostExpeditions.WorldGeneration {
 			int i = 0;
 
 			foreach( (int leftTileX, int nearFloorTileY) in existingExpeditions ) {
-				if( !this.CreateExpeditionAt(genDef, leftTileX, nearFloorTileY, out string result) ) {
+				if( !genDef.CreateExpeditionAt(leftTileX, nearFloorTileY, out string result) ) {
 					LogLibraries.Log(
 						"Could not finish generating all 'lost expeditions' "
 						+"("+i+" of "+existingExpeditions.Count+"): "+result
@@ -75,47 +75,6 @@ namespace LostExpeditions.WorldGeneration {
 				i++;
 				progress.Value += progressUnit;
 			}
-		}
-
-
-		////
-
-		private bool CreateUndergroundLE( int tileX, int nearFloorTileY, int paveTileType, int campWidth, out string result ) {
-			int chestIdx;
-
-			bool createdCamp = this.CreateExpeditionStructure(
-				leftTileX: tileX,
-				nearFloorTileY: nearFloorTileY,
-				campWidth: campWidth,
-				customTiles: new int[0],
-				paveTileType: paveTileType,
-				rememberLocation: true,
-				chestIdx: out chestIdx,
-				result: out result
-			);
-			if( !createdCamp ) {
-				return false;
-			}
-
-			this.FillExpeditionBarrel(
-				tileX: tileX,
-				tileY: nearFloorTileY,
-				chestIdx: chestIdx,
-				hasLoreNote: true,
-				speedloaderCount: WorldGen.genRand.NextFloat() < (2f / 3f) ? 1 : 0,
-				randomOrbCount: 0,
-				whiteOrbCount: WorldGen.genRand.Next( 1, 4 ),
-				canopicJarCount: WorldGen.genRand.Next( 1, 3 ),
-				elixirCount: WorldGen.genRand.Next( -1, 2 ),
-				mountedMirrorsCount: WorldGen.genRand.Next( -1, 2 ),
-				PKEMeterCount: 0,
-				hasOrbsBooklet: false,
-				hasShadowMirror: WorldGen.genRand.NextBool(),
-				darkHeartPieceCount: WorldGen.genRand.Next( -1, 2 )
-			);
-
-			result = "Success.";
-			return true;
 		}
 
 

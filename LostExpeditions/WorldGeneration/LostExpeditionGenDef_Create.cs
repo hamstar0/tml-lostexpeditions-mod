@@ -29,7 +29,7 @@ namespace LostExpeditions.WorldGeneration {
 
 			//
 
-			if( !this.CreateExpeditionAt(this, x, nearFloorY, out string err ) ) {
+			if( !this.CreateExpeditionAt(x, nearFloorY, out string err) ) {
 				LogLibraries.Log( "Could not generate "+this.Name+" 'lost expedition': "+err );
 			}
 
@@ -39,11 +39,7 @@ namespace LostExpeditions.WorldGeneration {
 
 		////////////////
 
-		private bool CreateExpeditionAt(
-					LostExpeditionGenDef def,
-					int leftTileX,
-					int nearFloorTileY,
-					out string result ) {
+		public bool CreateExpeditionAt( int leftTileX, int nearFloorTileY, out string result ) {
 			int paveTileType = TileID.Dirt;
 			int chestIdx;
 
@@ -52,10 +48,10 @@ namespace LostExpeditions.WorldGeneration {
 			bool createdCamp = LostExpeditionsGen.CreateExpeditionStructure(
 				leftTileX: leftTileX,
 				nearFloorTileY: nearFloorTileY,
-				campWidth: def.TileWidth + 2,
-				customTiles: def.CustomTileTypes,
+				campWidth: this.TileWidth + 2,
+				customTiles: this.CustomTileTypes,
 				paveTileType: paveTileType,
-				rememberLocation: def.RemembersLocation,
+				rememberLocation: this.RemembersLocation,
 				chestIdx: out chestIdx,
 				result: out result
 			);
@@ -65,8 +61,11 @@ namespace LostExpeditions.WorldGeneration {
 					tileX: leftTileX,
 					tileY: nearFloorTileY,
 					chestIdx: chestIdx,
-					itemGenDefs: def.BarrelItemGenerators
+					itemGenDefs: this.BarrelItemGenerators,
+					currentExpeditonID: LostExpeditionGenDef.CurrentExpeditonID
 				);
+
+				LostExpeditionGenDef.CurrentExpeditonID++;
 			}
 
 			return createdCamp;

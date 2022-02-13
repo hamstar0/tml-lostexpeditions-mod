@@ -8,11 +8,15 @@ using ModLibsCore.Libraries.Debug;
 
 namespace LostExpeditions.WorldGeneration {
 	public partial class LostExpeditionGenDef {
-		public delegate IEnumerable<Item> ItemGenDef();
+		public delegate IEnumerable<Item> ItemGenDef( int currentExpeditonID );
 
-		public delegate (int leftTileX, int nearFloorTileY)? FindLocation(
-					int campWidth,
-					out int mostCommonTileType );
+		public delegate (int leftTileX, int nearFloorTileY)? FindLocation( int campWidth, out int mostCommonTileType );
+
+
+
+		////////////////
+
+		public static int CurrentExpeditonID = 0;
 
 
 

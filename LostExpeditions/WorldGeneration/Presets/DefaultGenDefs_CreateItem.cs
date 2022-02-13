@@ -123,11 +123,15 @@ namespace LostExpeditions.WorldGeneration.Presets {
 
 		////
 
-		private static Item CreateLoreNoteItem( int currentNodeIdx ) {
-			return ReadableBookItem.CreateBook(
-				LostExpeditionsGen.LoreNotes[currentNodeIdx].title,
-				LostExpeditionsGen.LoreNotes[currentNodeIdx].pages
+		private static IEnumerable<Item> CreateLoreNoteItems( int currentExpedId ) {
+			int noteIdx = currentExpedId % LostExpeditionsGen.LoreNotes.Length;
+
+			Item note = ReadableBookItem.CreateBook(
+				LostExpeditionsGen.LoreNotes[noteIdx].title,
+				LostExpeditionsGen.LoreNotes[noteIdx].pages
 			);
+
+			return new Item[] { note };
 		}
 
 

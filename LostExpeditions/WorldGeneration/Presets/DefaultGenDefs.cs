@@ -16,9 +16,9 @@ namespace LostExpeditions.WorldGeneration.Presets {
 			customTileTypes: new int[0],
 			finder: DefaultLostExpeditionGenDefs.FindDungeonExpeditionLocation,
 			barrelItemGenerators: new LostExpeditionGenDef.ItemGenDef[] {
-				() => DefaultLostExpeditionGenDefs.CreateRandomOrbItems( 4 ),
-				() => DefaultLostExpeditionGenDefs.CreateOrbsBookletItems(),
-				() => DefaultLostExpeditionGenDefs.CreateDarkHeartPieceItems( 1 )
+				(id) => DefaultLostExpeditionGenDefs.CreateRandomOrbItems( 4 ),
+				(id) => DefaultLostExpeditionGenDefs.CreateOrbsBookletItems(),
+				(id) => DefaultLostExpeditionGenDefs.CreateDarkHeartPieceItems( 1 )
 			},
 			remembersLocation: true
 		);
@@ -29,7 +29,7 @@ namespace LostExpeditions.WorldGeneration.Presets {
 			customTileTypes: new int[] { ModContent.TileType<FallenCyborgTile>() },
 			finder: DefaultLostExpeditionGenDefs.FindMiddleSurfaceExpeditionLocation,
 			barrelItemGenerators: new LostExpeditionGenDef.ItemGenDef[] {
-				() => DefaultLostExpeditionGenDefs.CreatePKEMeterItems( 2 )
+				(id) => DefaultLostExpeditionGenDefs.CreatePKEMeterItems( 2 )
 			},
 			remembersLocation: true
 		);
@@ -40,7 +40,7 @@ namespace LostExpeditions.WorldGeneration.Presets {
 			customTileTypes: new int[0],
 			finder: DefaultLostExpeditionGenDefs.FindJungleSideBeachExpeditionLocation,
 			barrelItemGenerators: new LostExpeditionGenDef.ItemGenDef[] {
-				() => DefaultLostExpeditionGenDefs.CreatePKEMeterItems( 2 )f
+				(id) => DefaultLostExpeditionGenDefs.CreateLoreNoteItems( id )
 			},
 			remembersLocation: true
 		);
@@ -62,7 +62,7 @@ namespace LostExpeditions.WorldGeneration.Presets {
 			customTileTypes: new int[0],
 			finder: DefaultLostExpeditionGenDefs.FindUndergroundExpeditionLocation,
 			barrelItemGenerators: new LostExpeditionGenDef.ItemGenDef[] {
-				() => DefaultLostExpeditionGenDefs.CreatePKEMeterItems( 2 )f
+				(id) => DefaultLostExpeditionGenDefs.CreatePKEMeterItems( 2 )f
 			},
 			remembersLocation: true
 		);

@@ -7,20 +7,12 @@ using ModLibsGeneral.Libraries.World;
 
 namespace LostExpeditions.WorldGeneration {
 	partial class LostExpeditionsGen : GenPass {
-		private int CurrentLE = 0;
-
-
-
-		////////////////
-
 		public LostExpeditionsGen() : base( "Lost Expeditions", 1f ) { }
 
 
 		////
 
 		public override void Apply( GenerationProgress progress ) {
-			this.CurrentLE = 0;
-
 			int count = 14;
 
 			switch( WorldLibraries.GetSize() ) {

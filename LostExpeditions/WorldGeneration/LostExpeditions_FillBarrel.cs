@@ -3,7 +3,6 @@ using Terraria;
 using Terraria.World.Generation;
 using Terraria.ModLoader;
 using ModLibsCore.Libraries.Debug;
-using ReadableBooks.Items.ReadableBook;
 
 
 namespace LostExpeditions.WorldGeneration {
@@ -12,7 +11,8 @@ namespace LostExpeditions.WorldGeneration {
 					int tileX,
 					int tileY,
 					int chestIdx,
-					LostExpeditionGenDef.ItemGenDef[] itemGenDefs ) {
+					LostExpeditionGenDef.ItemGenDef[] itemGenDefs,
+					int currentExpeditonID ) {
 			if( chestIdx == -1 ) {
 				LogLibraries.Warn( "Could not fill 'lost expedition' barrel at "+tileX+", "+tileY+"." );
 				return;
@@ -22,7 +22,7 @@ namespace LostExpeditions.WorldGeneration {
 			int itemIdx = 0;
 
 			foreach( LostExpeditionGenDef.ItemGenDef itemGenDef in itemGenDefs ) {
-				foreach( Item item in itemGenDef.Invoke() ) {
+				foreach( Item item in itemGenDef.Invoke(currentExpeditonID) ) {
 					if( item != null ) {
 						chest[ itemIdx++ ] = item;
 					}
