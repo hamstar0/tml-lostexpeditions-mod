@@ -10,7 +10,8 @@ using LostExpeditions.WorldGeneration;
 
 namespace LostExpeditions {
 	partial class LostExpeditionsWorld : ModWorld {
-		internal IDictionary<(int tileX, int tileY), bool> LostExpeditions = new Dictionary<(int, int), bool>();
+		internal IDictionary<(int chestTileX, int nearFloorTileY), bool> LostExpeditions
+			= new Dictionary<(int, int), bool>();
 
 
 
