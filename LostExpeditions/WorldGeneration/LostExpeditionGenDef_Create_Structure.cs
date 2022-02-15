@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.World.Generation;
 using ModLibsCore.Classes.Errors;
 using ModLibsCore.Libraries.Debug;
 using ModLibsGeneral.Libraries.Tiles;

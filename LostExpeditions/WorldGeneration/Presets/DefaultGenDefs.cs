@@ -16,9 +16,9 @@ namespace LostExpeditions.WorldGeneration.Presets {
 			customTileTypes: new int[0],
 			finder: DefaultLostExpeditionGenDefs.FindDungeonExpeditionLocation,
 			barrelItemGenerators: new LostExpeditionGenDef.ItemGenDef[] {
-				(id) => DefaultLostExpeditionGenDefs.CreateRandomOrbItems( 4 ),
+				(id) => DefaultLostExpeditionGenDefs.CreateRandomColoredOrbItems( 4 ),
 				(id) => DefaultLostExpeditionGenDefs.CreateOrbsBookletItems(),
-				(id) => DefaultLostExpeditionGenDefs.CreateDarkHeartPieceItems( 1 )
+				(id) => DefaultLostExpeditionGenDefs.CreateModItems( "LockedAbilities", "DarkHeartPieceItem", 1 )
 			},
 			remembersLocation: true
 		);
@@ -41,12 +41,24 @@ namespace LostExpeditions.WorldGeneration.Presets {
 			finder: DefaultLostExpeditionGenDefs.FindJungleSideBeachExpeditionLocation,
 			barrelItemGenerators: new LostExpeditionGenDef.ItemGenDef[] {
 				(id) => DefaultLostExpeditionGenDefs.CreateLoreNoteItems( id ),
-				(id) => DefaultLostExpeditionGenDefs.CreateSpeedloaderItems(
-					WorldGen.genRand.NextFloat() < (2f/3f) ? 1 : 0 ),
-				(id) => DefaultLostExpeditionGenDefs.CreateWhiteOrbItems( WorldGen.genRand.Next(1, 4) ),
-				(id) => DefaultLostExpeditionGenDefs.CreateCanopicJarItems( WorldGen.genRand.Next(1, 3) ),
-				(id) => DefaultLostExpeditionGenDefs.CreateElixirOfLifeItems( WorldGen.genRand.Next(1, 3) ),
-				(id) => DefaultLostExpeditionGenDefs.CreateDarkHeartPieceItems( 1 )
+				(id) => DefaultLostExpeditionGenDefs.CreateModItems(
+					"TheMadRanger", "SpeedloaderItem",
+					Math.Max( 1, WorldGen.genRand.Next(0, 3) )
+				),
+				(id) => DefaultLostExpeditionGenDefs.CreateModItems(
+					"Orbs", "WhiteOrbItem",
+					Math.Max( 2, WorldGen.genRand.Next(1, 4) )
+				),
+				(id) => DefaultLostExpeditionGenDefs.CreateModItems(
+					"Necrotis", "EmptyCanopicJarItem",
+					WorldGen.genRand.Next(1, 3)
+				),
+				(id) => DefaultLostExpeditionGenDefs.CreateModItems(
+					"Necrotis", "ElixirOfLifeItem",
+					WorldGen.genRand.Next(1, 3)
+				),
+				(id) => DefaultLostExpeditionGenDefs.CreateModItems( "LockedAbilities", "DarkHeartPieceItem", 1 ),
+				(id) => DefaultLostExpeditionGenDefs.CreateModItems( "SteampunkArsenal", "SteamBallItem", 1 )
 			},
 			remembersLocation: true
 		);
@@ -58,15 +70,38 @@ namespace LostExpeditions.WorldGeneration.Presets {
 			finder: DefaultLostExpeditionGenDefs.FindUndergroundExpeditionLocation,
 			barrelItemGenerators: new LostExpeditionGenDef.ItemGenDef[] {
 				(id) => DefaultLostExpeditionGenDefs.CreateLoreNoteItems( id ),
-				(id) => DefaultLostExpeditionGenDefs.CreateSpeedloaderItems(
-					WorldGen.genRand.NextFloat() < (2f / 3f) ? 1 : 0 ),
-				(id) => DefaultLostExpeditionGenDefs.CreateWhiteOrbItems( WorldGen.genRand.Next(1, 4) ),
-				(id) => DefaultLostExpeditionGenDefs.CreateCanopicJarItems( WorldGen.genRand.Next(1, 3) ),
-				(id) => DefaultLostExpeditionGenDefs.CreateElixirOfLifeItems( WorldGen.genRand.Next(-1, 2) ),
-				(id) => DefaultLostExpeditionGenDefs.CreateMountedMirrorItems( WorldGen.genRand.Next(-1, 2) ),
-				(id) => DefaultLostExpeditionGenDefs.CreateShadowMirrorItems(
-					WorldGen.genRand.NextBool() ? 1 : 0 ),
-				(id) => DefaultLostExpeditionGenDefs.CreateDarkHeartPieceItems( WorldGen.genRand.Next(-1, 2) )
+				(id) => DefaultLostExpeditionGenDefs.CreateModItems(
+					"TheMadRanger", "SpeedloaderItem",
+					Math.Max( 1, WorldGen.genRand.Next(0, 3) )
+				),
+				(id) => DefaultLostExpeditionGenDefs.CreateModItems(
+					"Orbs", "WhiteOrbItem",
+					Math.Max( 2, WorldGen.genRand.Next(0, 4) )
+				),
+				(id) => DefaultLostExpeditionGenDefs.CreateModItems(
+					"Necrotis", "EmptyCanopicJarItem",
+					Math.Max( 2, WorldGen.genRand.Next(1, 4) )
+				),
+				(id) => DefaultLostExpeditionGenDefs.CreateModItems(
+					"Necrotis", "ElixirOfLifeItem",
+					WorldGen.genRand.Next(-1, 2)
+				),
+				(id) => DefaultLostExpeditionGenDefs.CreateModItems(
+					"MountedMagicMirrors", "MountableMagicMirrorTileItem",
+					WorldGen.genRand.Next(-1, 2)
+				),
+				(id) => DefaultLostExpeditionGenDefs.CreateModItems(
+					"SpiritWalking", "ShadowMirrorItem",
+					WorldGen.genRand.NextBool() ? 1 : 0
+				),
+				(id) => DefaultLostExpeditionGenDefs.CreateModItems(
+					"LockedAbilities", "DarkHeartPieceItem",
+					Math.Max( 1, WorldGen.genRand.Next(-1, 3) )
+				),
+				(id) => DefaultLostExpeditionGenDefs.CreateModItems(
+					"SteampunkArsenal", "SteamBallItem",
+					WorldGen.genRand.Next(-1, 1)
+				)
 			},
 			remembersLocation: true
 		);
