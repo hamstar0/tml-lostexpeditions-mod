@@ -12,7 +12,7 @@ namespace LostExpeditions.WorldGeneration.Presets {
 	public partial class DefaultLostExpeditionGenDefs {
 		private static IEnumerable<Item> CreateModItems( string modName, string itemName, int quantity ) {
 			if( ModLoader.GetMod( modName ) == null ) {
-				LogLibraries.Log( "Could not generate " + itemName + " (" + modName + ") for Lost Expedition; missing mod." );
+				LogLibraries.Log( "Could not generate "+itemName+" ("+modName+") for Lost Expedition; missing mod." );
 
 				return new List<Item>( 0 );
 			}
@@ -23,7 +23,7 @@ namespace LostExpeditions.WorldGeneration.Presets {
 
 			if( itemType == 0 ) {
 				LogLibraries.Alert(
-					"Could not generate " + itemName + " (" + modName + ") for Lost Expedition; missing item type!"
+					"Could not generate "+itemName+" ("+modName+") for Lost Expedition; missing item type!"
 				);
 
 				return new List<Item>( 0 );

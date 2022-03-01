@@ -18,7 +18,7 @@ namespace LostExpeditions.WorldGeneration.Presets {
 			barrelItemGenerators: new LostExpeditionGenDef.ItemGenDef[] {
 				(id) => DefaultLostExpeditionGenDefs.CreateRandomColoredOrbItems( 4 ),
 				(id) => DefaultLostExpeditionGenDefs.CreateOrbsBookletItems(),
-				(id) => DefaultLostExpeditionGenDefs.CreateModItems( "LockedAbilities", "DarkHeartPieceItem", 1 )
+				//(id) => DefaultLostExpeditionGenDefs.CreateModItems( "LockedAbilities", "DarkHeartPieceItem", 1 )
 			},
 			remembersLocation: true
 		);
