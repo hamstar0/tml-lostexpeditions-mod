@@ -9,9 +9,15 @@ namespace LostExpeditions {
 	partial class LostExpeditionsPlayer : ModPlayer {
 		private void DiscoverNearbyLEsIf() {
 			(int tileX, int tileY) nearestFEPos;
-			if( LostExpeditionsWorld.GaugeUnexploredExpeditionsNear(this.player.MountedCenter, out nearestFEPos) == null ) {
+			float? unexploredNear = LostExpeditionsWorld.GaugeUnexploredExpeditionsNear(
+				worldPos: this.player.MountedCenter,
+				nearestFEPos: out nearestFEPos
+			);
+			if( !unexploredNear.HasValue ) {
 				return;
 			}
+
+			//
 
 			int minTileDist = 6;
 			int minTileDistSqr = minTileDist * minTileDist;

@@ -14,31 +14,37 @@ namespace LostExpeditions.WorldGeneration {
 					GenerationProgress progress,
 					float progressUnit,
 					ref IList<(int leftTileX, int nearFloorTileY)> existingExpeditions ) {
-			int retries = 0;
+			var proposedExpeditions = new List<(int leftTileX, int nearFloorTileY)>();
 
-			for( int expedNum = 1; expedNum < amount; expedNum++ ) {
-				(int leftTileX, int nearFloorTileY)? expedPointRaw = genDef.Finder(
+			int retries = 0;
+			
+			for( int expedNum = 0; expedNum < amount; expedNum++ ) {
+				(int leftTileX, int nearFloorTileY)? testExpedition = genDef.Finder(
 					campWidth: genDef.TileWidth,
 					mostCommonTileType: out int paveTileType
 				);
 
-				if( !expedPointRaw.HasValue ) {
+				if( !testExpedition.HasValue ) {
 					LogLibraries.Log(
 						"Could not finish finding places to generate all 'lost expeditions' ("
-						+expedNum+" of "+amount+")"
+						+(expedNum+1)+" of "+amount+")"
 					);
 					break;
 				}
 
 				//
-				
-				if( this.IsNearAnotherExpedition(existingExpeditions, expedPointRaw.Value) ) {
+
+				bool isNearOtherExpedition =
+					this.IsNearAnotherExpedition( proposedExpeditions, testExpedition.Value ) ||
+					this.IsNearAnotherExpedition( existingExpeditions, testExpedition.Value );
+
+				if( isNearOtherExpedition ) {
 					retries++;
 
-					if( retries > 1000 ) {
+					if( retries > 5000 ) {
 						LogLibraries.Log(
 							"Could not finish finding open places to generate all 'lost expeditions' ("
-							+expedNum+" of "+amount+")"
+							+(expedNum+1)+" of "+amount+")"
 						);
 
 						break;	// give up
@@ -53,21 +59,25 @@ namespace LostExpeditions.WorldGeneration {
 
 				//
 
-				existingExpeditions.Add( (expedPointRaw.Value.leftTileX, expedPointRaw.Value.nearFloorTileY) );
+				proposedExpeditions.Add(
+					(testExpedition.Value.leftTileX, testExpedition.Value.nearFloorTileY)
+				);
 			}
 
 			//
 
 			int i = 0;
 
-			foreach( (int leftTileX, int nearFloorTileY) in existingExpeditions ) {
-				if( !genDef.CreateExpeditionAt(leftTileX, nearFloorTileY, out string result) ) {
+			foreach( (int leftTileX, int nearFloorTileY) in proposedExpeditions ) {
+				bool isCreated = genDef.CreateExpeditionAt( leftTileX, nearFloorTileY, out string result );
+
+				if( !isCreated ) {
 					LogLibraries.Log(
-						"Could not finish generating all 'lost expeditions' "
-						+"("+i+" of "+existingExpeditions.Count+"): "+result
+						"Could not finish generating lost expedition at "+leftTileX+", "+nearFloorTileY
+						+" ("+i+" of "+amount+"): "+result
 					);
 
-					break;
+					//break;
 				}
 
 				//

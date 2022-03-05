@@ -17,7 +17,7 @@ namespace LostExpeditions {
 
 		////////////////
 
-		public bool DebugModeMiscInfo { get; set; } = false;
+		public bool DebugModeInfo { get; set; } = false;
 
 		public bool DebugModeLostExpeditionsReveal { get; set; } = false;
 

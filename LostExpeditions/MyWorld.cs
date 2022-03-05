@@ -13,6 +13,9 @@ namespace LostExpeditions {
 		internal IDictionary<(int chestTileX, int nearFloorTileY), bool> LostExpeditions
 			= new Dictionary<(int, int), bool>();
 
+		//internal IDictionary<string, (int chestTileX, int nearFloorTileY)> LostExpeditionsByName
+		//	= new Dictionary<string, (int, int)>();
+
 
 
 		////////////////

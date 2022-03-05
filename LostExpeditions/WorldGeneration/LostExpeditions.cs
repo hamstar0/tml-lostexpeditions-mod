@@ -13,23 +13,23 @@ namespace LostExpeditions.WorldGeneration {
 		////
 
 		public override void Apply( GenerationProgress progress ) {
-			int count = 14;
+			int count = 16;
 
 			switch( WorldLibraries.GetSize() ) {
 			case WorldSize.SubSmall:
 				count = 11;
 				break;
 			case WorldSize.Small:
-				count = 14;
+				count = 16;
 				break;
 			case WorldSize.Medium:
-				count = 21;
+				count = 23;
 				break;
 			case WorldSize.Large:
-				count = 28;
+				count = 30;
 				break;
 			case WorldSize.SuperLarge:
-				count = 35;
+				count = 37;
 				break;
 			}
 

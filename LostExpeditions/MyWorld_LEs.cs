@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Terraria.ModLoader;
+using ModLibsCore.Libraries.Debug;
 using ModLibsCore.Libraries.DotNET.Extensions;
 
 
@@ -49,6 +50,12 @@ namespace LostExpeditions {
 
 		public static void RevealExpeditionAt( int tileX, int tileY ) {
 			var myworld = ModContent.GetInstance<LostExpeditionsWorld>();
+
+			if( !myworld.LostExpeditions.ContainsKey((tileX, tileY)) ) {
+				LogLibraries.Warn( "Could not find expedition at "+tileX+":"+tileY+" to reveal." );
+
+				return;
+			}
 
 			myworld.LostExpeditions[ (tileX, tileY) ] = true;
 			//return myworld.LostExpeditions.Remove( (tileX, tileY) );

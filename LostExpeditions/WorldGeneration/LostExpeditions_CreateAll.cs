@@ -30,6 +30,11 @@ namespace LostExpeditions.WorldGeneration {
 					existingExpeditions.Add( expedition.Value );
 					progress.Value += progUnit;
 					count--;
+				} else {
+					LogLibraries.Alert(
+						"Could not gen expedition "
+						+ DefaultLostExpeditionGenDefs.DungeonGenDef.Name
+					);
 				}
 
 				expedition = DefaultLostExpeditionGenDefs.MidMapGenDef.CreateExpedition();
@@ -37,6 +42,11 @@ namespace LostExpeditions.WorldGeneration {
 					existingExpeditions.Add( expedition.Value );
 					progress.Value += progUnit;
 					count--;
+				} else {
+					LogLibraries.Alert(
+						"Could not gen expedition "
+						+DefaultLostExpeditionGenDefs.MidMapGenDef.Name
+					);
 				}
 
 				expedition = DefaultLostExpeditionGenDefs.JungleOceanGenDef.CreateExpedition();
@@ -44,10 +54,13 @@ namespace LostExpeditions.WorldGeneration {
 					existingExpeditions.Add( expedition.Value );
 					progress.Value += progUnit;
 					count--;
+				} else {
+					LogLibraries.Alert(
+						"Could not gen expedition "
+						+ DefaultLostExpeditionGenDefs.JungleOceanGenDef.Name
+					);
 				}
 			}
-
-			//
 
 			//
 

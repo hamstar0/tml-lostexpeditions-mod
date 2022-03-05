@@ -66,6 +66,10 @@ namespace LostExpeditions.WorldGeneration {
 				);
 
 				LostExpeditionGenDef.CurrentExpeditonID++;
+
+				if( LostExpeditionsConfig.Instance.DebugModeInfo ) {
+					LogLibraries.Log( "Created lost expedition at "+leftTileX+", "+nearFloorTileY );
+				}
 			}
 
 			return createdCamp;
