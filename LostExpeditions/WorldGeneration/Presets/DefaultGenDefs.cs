@@ -43,19 +43,19 @@ namespace LostExpeditions.WorldGeneration.Presets {
 				(id) => DefaultLostExpeditionGenDefs.CreateLoreNoteItems( id ),
 				(id) => DefaultLostExpeditionGenDefs.CreateModItems(
 					"TheMadRanger", "SpeedloaderItem",
-					Math.Max( 1, WorldGen.genRand.Next(0, 3) )
+					Math.Min( 1, WorldGen.genRand.Next(0, 3) )
 				),
 				(id) => DefaultLostExpeditionGenDefs.CreateModItems(
 					"Orbs", "WhiteOrbItem",
-					Math.Max( 2, WorldGen.genRand.Next(1, 4) )
+					Math.Min( 2, WorldGen.genRand.Next(1, 4) )
 				),
 				(id) => DefaultLostExpeditionGenDefs.CreateModItems(
 					"Necrotis", "EmptyCanopicJarItem",
-					WorldGen.genRand.Next(1, 3)
+					WorldGen.genRand.Next(1, 2)	//(1, 3)
 				),
 				(id) => DefaultLostExpeditionGenDefs.CreateModItems(
 					"Necrotis", "ElixirOfLifeItem",
-					WorldGen.genRand.Next(1, 3)
+					WorldGen.genRand.Next(2, 3)	//(1, 3)
 				),
 				(id) => DefaultLostExpeditionGenDefs.CreateModItems( "LockedAbilities", "DarkHeartPieceItem", 1 ),
 				(id) => DefaultLostExpeditionGenDefs.CreateModItems( "SteampunkArsenal", "SteamBallItem", 1 )
@@ -72,15 +72,15 @@ namespace LostExpeditions.WorldGeneration.Presets {
 				(id) => DefaultLostExpeditionGenDefs.CreateLoreNoteItems( id ),
 				(id) => DefaultLostExpeditionGenDefs.CreateModItems(
 					"TheMadRanger", "SpeedloaderItem",
-					Math.Max( 1, WorldGen.genRand.Next(0, 3) )
+					Math.Min( 1, WorldGen.genRand.Next(0, 3) )
 				),
 				(id) => DefaultLostExpeditionGenDefs.CreateModItems(
 					"Orbs", "WhiteOrbItem",
-					Math.Max( 2, WorldGen.genRand.Next(0, 4) )
+					Math.Min( 2, WorldGen.genRand.Next(0, 4) )
 				),
 				(id) => DefaultLostExpeditionGenDefs.CreateModItems(
 					"Necrotis", "EmptyCanopicJarItem",
-					Math.Max( 2, WorldGen.genRand.Next(1, 4) )
+					Math.Min( 2, WorldGen.genRand.Next(1, 4) )
 				),
 				(id) => DefaultLostExpeditionGenDefs.CreateModItems(
 					"Necrotis", "ElixirOfLifeItem",
@@ -96,7 +96,7 @@ namespace LostExpeditions.WorldGeneration.Presets {
 				),
 				(id) => DefaultLostExpeditionGenDefs.CreateModItems(
 					"LockedAbilities", "DarkHeartPieceItem",
-					Math.Max( 1, WorldGen.genRand.Next(-1, 3) )
+					Math.Min( 1, WorldGen.genRand.Next(-1, 3) )
 				),
 				(id) => DefaultLostExpeditionGenDefs.CreateModItems(
 					"SteampunkArsenal", "SteamBallItem",
