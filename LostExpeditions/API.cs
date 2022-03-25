@@ -9,10 +9,19 @@ using LostExpeditions.WorldGeneration;
 namespace LostExpeditions {
 	public class LostExpeditionsAPI {
 		public static (int chestTileX, int nearFloorTileY)[] GetLostExpeditionLocations() {
+			return LostExpeditionsAPI.GetLostExpeditionLocations( null );
+		}
+
+		public static (int chestTileX, int nearFloorTileY)[] GetLostExpeditionLocations( bool? isFound ) {
 			var myworld = ModContent.GetInstance<LostExpeditionsWorld>();
 			return myworld.LostExpeditions
-				.Keys.ToArray();
+				.Where( kv => isFound.HasValue ? kv.Value == isFound.Value : true )
+				.Select( kv => kv.Key )
+				.ToArray();
 		}
+
+		////////////////
+		
 
 		public static bool? IsLostExpeditionFound( int chestTileX, int nearFloorTileY ) {
 			var myworld = ModContent.GetInstance<LostExpeditionsWorld>();

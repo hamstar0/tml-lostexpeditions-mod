@@ -12,13 +12,18 @@ namespace LostExpeditions {
 	partial class LostExpeditionsWorld : ModWorld {
 		internal IDictionary<(int chestTileX, int nearFloorTileY), bool> LostExpeditions
 			= new Dictionary<(int, int), bool>();
-
+		
 		//internal IDictionary<string, (int chestTileX, int nearFloorTileY)> LostExpeditionsByName
 		//	= new Dictionary<string, (int, int)>();
 
 
 
 		////////////////
+
+		public override void Initialize() {
+			this.LostExpeditions.Clear();
+		}
+
 
 		public override void Load( TagCompound tag ) {
 			this.LostExpeditions.Clear();

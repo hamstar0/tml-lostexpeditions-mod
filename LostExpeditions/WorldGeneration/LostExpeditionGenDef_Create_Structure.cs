@@ -83,6 +83,7 @@ namespace LostExpeditions.WorldGeneration {
 
 			if( rememberLocation ) {
 				var myworld = ModContent.GetInstance<LostExpeditionsWorld>();
+
 				myworld.LostExpeditions[ (chestTileX, nearFloorTileY) ] = false;
 			}
 
