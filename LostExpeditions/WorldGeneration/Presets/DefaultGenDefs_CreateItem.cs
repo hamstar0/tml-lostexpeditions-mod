@@ -10,9 +10,9 @@ using ReadableBooks.Items.ReadableBook;
 
 namespace LostExpeditions.WorldGeneration.Presets {
 	public partial class DefaultLostExpeditionGenDefs {
-		private static IEnumerable<Item> CreateModItems( string modName, string itemName, int quantity ) {
+		private static IEnumerable<Item> CreateModItems_If( string modName, string itemName, int quantity ) {
 			if( ModLoader.GetMod( modName ) == null ) {
-				LogLibraries.Log( "Could not generate "+itemName+" ("+modName+") for Lost Expedition; missing mod." );
+				LogLibraries.Log( $"Could not generate {itemName} ({modName}) for Lost Expedition; missing mod." );
 
 				return new List<Item>( 0 );
 			}
@@ -22,9 +22,7 @@ namespace LostExpeditions.WorldGeneration.Presets {
 			int itemType = ModLoader.GetMod( modName ).ItemType( itemName );
 
 			if( itemType == 0 ) {
-				LogLibraries.Alert(
-					"Could not generate "+itemName+" ("+modName+") for Lost Expedition; missing item type!"
-				);
+				LogLibraries.Alert( $"Could not generate {itemName} ({modName}) for Lost Expedition; missing item type!" );
 
 				return new List<Item>( 0 );
 			}
@@ -52,7 +50,7 @@ namespace LostExpeditions.WorldGeneration.Presets {
 
 		////////////////
 
-		private static IEnumerable<Item> CreateRandomColoredOrbItems( int quantity ) {
+		private static IEnumerable<Item> CreateRandomColoredOrbItems_If( int quantity ) {
 			if( ModLoader.GetMod("Orbs") == null || quantity <= 0 ) {
 				return new List<Item>( 0 );
 			}
@@ -109,10 +107,12 @@ namespace LostExpeditions.WorldGeneration.Presets {
 
 		////
 
-		private static IList<Item> CreateOrbsBookletItems() {
+		private static IList<Item> CreateOrbsBookletItems_If() {
 			if( ModLoader.GetMod("Orbs") == null ) {
 				return new List<Item>( 0 );
 			}
+
+			//
 
 			Item orbsBookletItem = ReadableBookItem.CreateBook(
 				"Guide To Orbs",
@@ -147,10 +147,12 @@ namespace LostExpeditions.WorldGeneration.Presets {
 
 		////
 
-		private static IEnumerable<Item> CreatePKEMeterItems( int meterCount ) {
+		private static IEnumerable<Item> CreatePKEMeterItems_If( int meterCount ) {
 			if( ModLoader.GetMod("PKEMeter") == null || meterCount <= 0 ) {
 				return new List<Item>( 0 );
 			}
+
+			//
 			
 			(Item[] i1, Item i2, Item i3) items = DefaultLostExpeditionGenDefs.CreatePKEMeterItems_WeakRef( meterCount );
 			var list = new List<Item>( items.i1 );
