@@ -84,7 +84,7 @@ namespace LostExpeditions.WorldGeneration.Presets {
 				),
 				(id) => DefaultLostExpeditionGenDefs.CreateModItems_If(
 					"Necrotis", "ElixirOfLifeItem",
-					WorldGen.genRand.Next(-1, 2)
+					WorldGen.genRand.Next(0, 3)
 				),
 				(id) => DefaultLostExpeditionGenDefs.CreateModItems_If(
 					"MountedMagicMirrors", "MountableMagicMirrorTileItem",
@@ -96,7 +96,7 @@ namespace LostExpeditions.WorldGeneration.Presets {
 				),
 				(id) => DefaultLostExpeditionGenDefs.CreateModItems_If(
 					"LockedAbilities", "DarkHeartPieceItem",
-					Math.Min( 1, WorldGen.genRand.Next(-1, 3) )
+					Math.Min( 1, WorldGen.genRand.Next(0, 3) )
 				),
 				(id) => DefaultLostExpeditionGenDefs.CreateModItems_If(
 					"SteampunkArsenal", "SteamBallItem",
