@@ -18,6 +18,7 @@ namespace LostExpeditions.WorldGeneration.Presets {
 			barrelItemGenerators: new LostExpeditionGenDef.ItemGenDef[] {
 				(id) => DefaultLostExpeditionGenDefs.CreateRandomColoredOrbItems_If( 4 ),
 				(id) => DefaultLostExpeditionGenDefs.CreateOrbsBookletItems_If(),
+				(id) => DefaultLostExpeditionGenDefs.CreateModItems_If( "Orbs", "WhiteOrbItem", 4 ),
 				//(id) => DefaultLostExpeditionGenDefs.CreateModItems( "LockedAbilities", "DarkHeartPieceItem", 1 )
 			},
 			remembersLocation: true
@@ -29,7 +30,8 @@ namespace LostExpeditions.WorldGeneration.Presets {
 			customTileTypes: new int[] { ModContent.TileType<FallenCyborgTile>() },
 			finder: DefaultLostExpeditionGenDefs.FindMiddleSurfaceExpeditionLocation,
 			barrelItemGenerators: new LostExpeditionGenDef.ItemGenDef[] {
-				(id) => DefaultLostExpeditionGenDefs.CreatePKEMeterItems_If( 4 )
+				(id) => DefaultLostExpeditionGenDefs.CreatePKEMeterItems_If( 4 ),
+				(id) => DefaultLostExpeditionGenDefs.CreateModItems_If( "Orbs", "WhiteOrbItem", 4 ),
 			},
 			remembersLocation: true
 		);
@@ -47,7 +49,7 @@ namespace LostExpeditions.WorldGeneration.Presets {
 				),
 				(id) => DefaultLostExpeditionGenDefs.CreateModItems_If(
 					"Orbs", "WhiteOrbItem",
-					Math.Min( 2, WorldGen.genRand.Next(1, 4) )
+					Math.Min( 2, WorldGen.genRand.Next(2, 6) )
 				),
 				(id) => DefaultLostExpeditionGenDefs.CreateModItems_If(
 					"Necrotis", "EmptyCanopicJarItem",
